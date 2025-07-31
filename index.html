@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Durger</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-size: 18px;
+        }
+
+        .container {
+            max-width: 390px;
+        }
+
+        .inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 200px 200px 200px;
+        }
+
+        .img {
+            width: 150px;
+        }
+
+        .item {
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border: none;
+            background: rgb(248, 168, 24);
+            border-radius: 10px;
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: 700;
+
+            transition: background .2s linear;
+        }
+
+        .btn:hover {
+            background: lightgreen;
+        }
+
+        .usercard {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<h2>Каталог техники</h2>
+<div id="productGrid"></div>
+
+<div class="container">
+    <div class="inner">
+        <div class="item">
+            <img src="1.png" alt="" class="img">
+            <button class="btn" id="btn1">Add</button>
+        </div>
+        <div class="item">
+            <img src="2.png" alt="" class="img">
+            <button class="btn" id="btn2">Add</button>
+        </div>
+        <div class="item">
+            <img src="3.png" alt="" class="img">
+            <button class="btn" id="btn3">Add</button>
+        </div>
+        <div class="item">
+            <img src="4.png" alt="" class="img">
+            <button class="btn" id="btn4">Add</button>
+        </div>
+        <div class="item">
+            <img src="5.png" alt="" class="img">
+            <button class="btn" id="btn5">Add</button>
+        </div>
+        <div class="item">
+            <img src="6.png" alt="" class="img">
+            <button class="btn" id="btn6">Add</button>
+        </div>
+    </div>
+</div>
+<div class="usercard" id="usercard">
+
+</div>
+
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+</body>
+</html>
