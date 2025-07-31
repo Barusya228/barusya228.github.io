@@ -1,92 +1,129 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <title>Durger</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Durger — Каталог техники</title>
     <style>
+        :root {
+            --bg-color: #f9f9f9;
+            --card-bg: #fff;
+            --primary: #f8a818;
+            --primary-hover: #fbbc40;
+            --text-color: #333;
+            --radius: 12px;
+            --gap: 16px;
+            --font: 'Segoe UI', Tahoma, sans-serif;
+        }
+        * {
+            box-sizing: border-box;
+        }
         body {
             margin: 0;
             padding: 0;
-            font-size: 18px;
+            font-family: var(--font);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.5;
         }
-
-        .container {
-            max-width: 390px;
-        }
-
-        .inner {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 200px 200px 200px;
-        }
-
-        .img {
-            width: 150px;
-        }
-
-        .item {
-            text-align: center;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            border: none;
-            background: rgb(248, 168, 24);
-            border-radius: 10px;
+        header {
+            background: var(--primary);
             color: #fff;
+            padding: var(--gap);
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: var(--gap);
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: var(--gap);
+        }
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+        }
+        .card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .card button {
+            width: calc(100% - var(--gap)*2);
+            margin: var(--gap) auto;
+            padding: 12px 0;
+            background: var(--primary);
+            border: none;
+            border-radius: var(--radius);
+            color: #fff;
+            font-weight: 600;
             text-transform: uppercase;
-            font-weight: 700;
-
-            transition: background .2s linear;
+            cursor: pointer;
+            transition: background 0.2s;
         }
-
-        .btn:hover {
-            background: lightgreen;
+        .card button:hover {
+            background: var(--primary-hover);
         }
-
         .usercard {
+            margin-top: var(--gap);
+            padding: var(--gap);
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
             text-align: center;
         }
     </style>
 </head>
 <body>
-<h2>Каталог техники</h2>
-<div id="productGrid"></div>
-
+<header>
+    <h1>Каталог техники</h1>
+</header>
 <div class="container">
-    <div class="inner">
-        <div class="item">
-            <img src="1.png" alt="" class="img">
-            <button class="btn" id="btn1">Add</button>
+    <div class="grid">
+        <div class="card">
+            <img src="1.png" alt="Техника 1">
+            <button id="btn1">ADD</button>
         </div>
-        <div class="item">
-            <img src="2.png" alt="" class="img">
-            <button class="btn" id="btn2">Add</button>
+        <div class="card">
+            <img src="2.png" alt="Техника 2">
+            <button id="btn2">ADD</button>
         </div>
-        <div class="item">
-            <img src="3.png" alt="" class="img">
-            <button class="btn" id="btn3">Add</button>
+        <div class="card">
+            <img src="3.png" alt="Техника 3">
+            <button id="btn3">ADD</button>
         </div>
-        <div class="item">
-            <img src="4.png" alt="" class="img">
-            <button class="btn" id="btn4">Add</button>
+        <div class="card">
+            <img src="4.png" alt="Техника 4">
+            <button id="btn4">ADD</button>
         </div>
-        <div class="item">
-            <img src="5.png" alt="" class="img">
-            <button class="btn" id="btn5">Add</button>
+        <div class="card">
+            <img src="5.png" alt="Техника 5">
+            <button id="btn5">ADD</button>
         </div>
-        <div class="item">
-            <img src="6.png" alt="" class="img">
-            <button class="btn" id="btn6">Add</button>
+        <div class="card">
+            <img src="6.png" alt="Техника 6">
+            <button id="btn6">ADD</button>
         </div>
     </div>
+    <div class="usercard" id="usercard"></div>
 </div>
-<div class="usercard" id="usercard">
-
-</div>
-
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>
