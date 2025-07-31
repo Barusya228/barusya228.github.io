@@ -1,98 +1,96 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const order = {}; // { [productId]: count }
+let tg = window.Telegram.WebApp;
 
-    // 1) Ищем все карточки товаров
-    document.querySelectorAll('.item').forEach(item => {
-        const img    = item.querySelector('img');
-        const addBtn = item.querySelector('button.btn');
-        // Генерируем числовой ID: из "btn3" → "3"
-        const rawId  = addBtn.id || '';
-        const id     = rawId.replace(/\D/g, '') || String(Math.random()).slice(-4);
-        // Сохраняем в data-атрибуты (для View Order)
-        item.dataset.id   = id;
-        item.dataset.name = img.alt || `Товар ${id}`;
+tg.expand();
 
-        // 2) Создаём блок управления количеством
-        const controls = document.createElement('div');
-        controls.className = 'quantity-controls';
-        controls.style.display = 'none';
-        controls.style.alignItems = 'center';
-        controls.style.justifyContent = 'center';
+tg.MainButton.textColor = '#FFFFFF';
+tg.MainButton.color = '#2cab37';
 
-        const minusBtn = document.createElement('button');
-        minusBtn.className = 'btn minus-btn';
-        minusBtn.textContent = '−';
+let item = "";
 
-        const countEl = document.createElement('span');
-        countEl.className = 'item-count';
-        countEl.textContent = '0';
-        countEl.style.margin = '0 10px';
+let btn1 = document.getElementById("btn1");
+let btn2 = document.getElementById("btn2");
+let btn3 = document.getElementById("btn3");
+let btn4 = document.getElementById("btn4");
+let btn5 = document.getElementById("btn5");
+let btn6 = document.getElementById("btn6");
 
-        const plusBtn = document.createElement('button');
-        plusBtn.className = 'btn plus-btn';
-        plusBtn.textContent = '+';
-
-        controls.append(minusBtn, countEl, plusBtn);
-        item.appendChild(controls);
-
-        // 3) Обработчики
-        addBtn.addEventListener('click', () => {
-            addBtn.style.display      = 'none';
-            controls.style.display    = 'inline-flex';
-            updateCount(1);
-        });
-        plusBtn.addEventListener('click', () => {
-            updateCount(getCount() + 1);
-        });
-        minusBtn.addEventListener('click', () => {
-            const newCount = getCount() - 1;
-            if (newCount > 0) {
-                updateCount(newCount);
-            } else {
-                delete order[id];
-                countEl.textContent       = '0';
-                controls.style.display    = 'none';
-                addBtn.style.display      = 'inline-block';
-            }
-        });
-
-        function getCount() {
-            return parseInt(countEl.textContent, 10);
-        }
-        function updateCount(n) {
-            countEl.textContent = n;
-            order[id]           = n;
-        }
-    });
-
-    // 4) Кнопка View Order + контейнер списка
-    const usercard = document.getElementById('usercard');
-    const viewBtn  = document.createElement('button');
-    viewBtn.id     = 'view-order';
-    viewBtn.className = 'btn';
-    viewBtn.textContent = 'View Order';
-
-    const orderList = document.createElement('ul');
-    orderList.id = 'order-list';
-    orderList.style.listStyle = 'none';
-    orderList.style.padding = '0';
-    orderList.style.marginTop = '15px';
-
-    usercard.append(viewBtn, orderList);
-
-    viewBtn.addEventListener('click', () => {
-        orderList.innerHTML = '';
-        const entries = Object.entries(order);
-        if (entries.length === 0) {
-            orderList.innerHTML = '<li>Пусто</li>';
-            return;
-        }
-        entries.forEach(([prodId, qty]) => {
-            const itemDiv = document.querySelector(`.item[data-id="${prodId}"]`);
-            const name    = itemDiv.dataset.name;
-            const li      = document.createElement('li');
-            li.textContent = `${name} — ${qty} шт.`;
-            orderList.appendChild(li);
-        });
-    });
+btn1.addEventListener("click", function(){
+	if (tg.MainButton.isVisible) {
+		tg.MainButton.hide();
+	}
+	else {
+		tg.MainButton.setText("Вы выбрали товар 1!");
+		item = "1";
+		tg.MainButton.show();
+	}
 });
+
+btn2.addEventListener("click", function(){
+	if (tg.MainButton.isVisible) {
+		tg.MainButton.hide();
+	}
+	else {
+		tg.MainButton.setText("Вы выбрали товар 2!");
+		item = "2";
+		tg.MainButton.show();
+	}
+});
+
+btn3.addEventListener("click", function(){
+	if (tg.MainButton.isVisible) {
+		tg.MainButton.hide();
+	}
+	else {
+		tg.MainButton.setText("Вы выбрали товар 3!");
+		item = "3";
+		tg.MainButton.show();
+	}
+});
+
+btn4.addEventListener("click", function(){
+	if (tg.MainButton.isVisible) {
+		tg.MainButton.hide();
+	}
+	else {
+		tg.MainButton.setText("Вы выбрали товар 4!");
+		item = "4";
+		tg.MainButton.show();
+	}
+});
+
+btn5.addEventListener("click", function(){
+	if (tg.MainButton.isVisible) {
+		tg.MainButton.hide();
+	}
+	else {
+		tg.MainButton.setText("Вы выбрали товар 5!");
+		item = "5";
+		tg.MainButton.show();
+	}
+});
+
+btn6.addEventListener("click", function(){
+	if (tg.MainButton.isVisible) {
+		tg.MainButton.hide();
+	}
+	else {
+		tg.MainButton.setText("Вы выбрали товар 6!");
+		item = "6";
+		tg.MainButton.show();
+	}
+});
+
+
+Telegram.WebApp.onEvent("mainButtonClicked", function(){
+	tg.sendData(item);
+});
+
+
+let usercard = document.getElementById("usercard");
+
+let p = document.createElement("p");
+
+p.innerText = `${tg.initDataUnsafe.user.first_name}
+${tg.initDataUnsafe.user.last_name}`;
+
+usercard.appendChild(p);
